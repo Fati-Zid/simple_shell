@@ -61,6 +61,7 @@ char *find_path(context_t *ctx)
 			if (!pathstr[i])
 				break;
 			curr_pos = i + 1;
+			free(path);
 		}
 		i++;
 	}
