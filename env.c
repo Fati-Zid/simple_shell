@@ -47,12 +47,10 @@ char *find_path(context_t *ctx)
 		{
 			path = _strdup(pathstr, curr_pos, i - 1);
 			if (!*path) {
-				printf("first\n");
 				_strcat(&path, cmd);
 			}
 			else
 			{
-				printf("second\n");
 				_strcat(&path, "/");
 				_strcat(&path, cmd);
 			}

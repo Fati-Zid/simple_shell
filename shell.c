@@ -103,6 +103,6 @@ void exec_cmd(context_t *ctx)
 		}
 	}
 	else
-		_putserror(ctx, "not found");
+		_putserror(ctx, "command not found");
 }
 
