@@ -97,7 +97,7 @@ void fork_cmd(context_t *ctx)
 
 	if (child_pid == 0)
 	{
-		if(execve(cmd->path, cmd->argv, get_environ(ctx)) == -1)
+		if(execve(ctx->cmd->path, ctx->cmd->argv, get_environ(ctx)) == -1)
 		{
 			command_free(ctx);
 			context_free(ctx);
