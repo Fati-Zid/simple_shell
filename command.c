@@ -1,7 +1,7 @@
 #include "shell.h"
 
 /**
- * command_parse: function that ...
+ * command_parse - function that ...
  * @ctx: The shell context containing the command.
  * Return: 1 on success and -1 on failure
  */
@@ -20,7 +20,7 @@ unsigned int command_parse(context_t *ctx)
 		cmd->argv = (char **)malloc(sizeof(char *) * 2);
 		if (cmd->argv == NULL)
 			return (-1);
-		
+
 		_memset((void *)cmd->argv, 0, sizeof(char *) * 2);
 		cmd->argv[0] = _strdup(cmd->buff, 0, -1);
 		cmd->argv[1] = NULL;
@@ -33,14 +33,15 @@ unsigned int command_parse(context_t *ctx)
 }
 
 /**
- * command_free - Frees memory allocated for the command attributes.
+ * command_free - frees memory allocated for the command attributes.
  * @ctx: The shell context containing the command.
  * Return:nothings
  */
 
 void command_free(context_t *ctx)
 {
-    command_t *cmd = ctx->cmd;
+	command_t *cmd = ctx->cmd;
+
 	if (cmd->buff != NULL)
 	{
 		free(cmd->buff);
@@ -59,7 +60,7 @@ void command_free(context_t *ctx)
 		cmd->name = NULL;
 	}
 
-	if(cmd->path != NULL)
+	if (cmd->path != NULL)
 	{
 		free(cmd->path);
 		cmd->path = NULL;
@@ -68,7 +69,7 @@ void command_free(context_t *ctx)
 }
 
 /**
- * arg_free: function that free argv
+ * arg_free - function that free argv
  * @argv: array of argument
  * Return: nothing
  */
