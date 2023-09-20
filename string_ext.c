@@ -21,8 +21,8 @@ char *_starts_with(const char *haystack, const char *needle)
  */
 int is_white_space(char *str)
 {
-	while(str) {
-		if(!(*str == ' ' || *str == '\t' || *str == '\n'))
+	while(*str) {
+		if(*str != ' ' && *str != '\t' && *str != '\n')
 			return (0);
 		str++;
 	}
