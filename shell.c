@@ -19,12 +19,6 @@ void hsh(context_t *ctx)
 		if (r > 0)
 		{
 			command_parse(ctx);
-
-			printf("BUFF: %s | NAME: %s | ARG: %d\n"; ctx->cmd->buff, ctx->cmd->name, ctx->cmd->argc);
-			for(int i=0; i<ctx->cmd->argc; i++) {
-				printf("\t%s\n", ctx->cmd->argv[i]);
-			}
-
 			ret = exec_builtin(ctx);
 			if (ret == -1)
 				exec_cmd(ctx);
@@ -109,6 +103,6 @@ void exec_cmd(context_t *ctx)
 		}
 	}
 	else
-		_putserror(ctx, "command not found");
+		_putserror(ctx, "not found");
 }
 
