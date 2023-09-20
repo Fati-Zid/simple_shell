@@ -75,7 +75,7 @@ void exec_cmd(context_t *ctx)
 		if ((ctx->isatty || envget(ctx, "PATH=")
 				|| cmd->name[0] == '/') && iscmd(cmd->name))
 		{
-			cmd->path = cmd->name;
+			cmd->path = _strdup(cmd->name, 0, -1);
 			fork_cmd(ctx);
 		}
 		else
