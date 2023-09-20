@@ -22,6 +22,5 @@ int main(int argc, char **argv)
 	hsh(ctx);
 	exit_status = ctx->status;
 	context_free(ctx);
-
 	return (exit_status);
 }
