@@ -6,8 +6,8 @@
 #include <unistd.h>
 #include <signal.h>
 #include <errno.h>
-// #include <sys/stat.h>
-// #include <sys/wait.h>
+#include <sys/stat.h>
+#include <sys/wait.h>
 
 /* Externs */
 extern char **environ;
