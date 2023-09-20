@@ -56,9 +56,14 @@ void command_free(context_t *ctx)
 		free(cmd->path);
 		cmd->path = NULL;
 	}
-
 	cmd->argc = 0;
 }
+
+/**
+ * arg_free: function that free argv
+ * @argv: array of argument
+ * Return: nothing
+ */
 
 void arg_free(char **argv)
 {
