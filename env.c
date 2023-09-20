@@ -68,3 +68,27 @@ int envset(context_t *ctx, char *var, char *value)
 	free(buf);
 	return (0);
 }
+
+void envunset(context_t *ctx, char *var)
+{
+	list_t *node = ctx->env;
+	unsigned int i = 0;
+	char *p;
+
+	if (!node || !var)
+		return;
+
+	while (node)
+	{
+		p = _starts_with(node->data, var);
+		if (p && *p == '=')
+		{
+			list_remove_at(&(ctx->env), i);
+			i = 0;
+			node = ctx->env;
+			continue;
+		}
+		node = node->next;
+		i++;
+	}
+}

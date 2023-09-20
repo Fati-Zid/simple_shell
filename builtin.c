@@ -8,7 +8,7 @@
 int exitfn(context_t *ctx)
 {
 	int exitcode;
-	
+
 	if (ctx->cmd->argv[1])
 	{
 		exitcode = _erratoi(ctx->cmd->argv[1]);
@@ -50,6 +50,21 @@ int envsetfn(context_t *ctx)
 		return (1);
 	}
 	if (envset(ctx, cmd->argv[1], cmd->argv[2]))
-		return (0);
-	return (1);
+		return (1);
+	return (0);
+}
+
+int envunsetfn(context_t *ctx)
+{
+	int i;
+
+	if (ctx->cmd->argc == 1)
+	{
+		_eputsln("Too few arguements.");
+		return (1);
+	}
+	for (i = 1; i <= ctx->cmd->argc; i++)
+		envunset(ctx, ctx->cmd->argv[i]);
+
+	return (0);
 }

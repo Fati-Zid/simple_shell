@@ -29,7 +29,9 @@ void _eputsln(const char *str)
 void _putserror(context_t *ctx, const char *error)
 {
     _eputs(ctx->pname);
-	_eputs(": 1: ");
+	_eputs(": ");
+    _eputs(++ctx->error_count);
+    _eputs(": ");
     _eputs(ctx->cmd->name);
     _eputs(": ");
     _eputs(error);

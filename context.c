@@ -29,6 +29,7 @@ context_t *context_init(char *pname)
 
 	/* Init status */
 	ctx->status = 0;
+	ctx->error_count = 0;
 	return (ctx);
 }
 

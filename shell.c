@@ -43,6 +43,7 @@ int exec_builtin(context_t *ctx)
 		{"exit", exitfn},
 		{"env", envfn},
 		{"setenv", envsetfn},
+		{"unsetenv", envunsetfn},
 		{NULL, NULL}
 	};
 

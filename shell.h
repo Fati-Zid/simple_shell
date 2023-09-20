@@ -54,6 +54,7 @@ typedef struct context
 	command_t *cmd;
 	list_t *env;
 	int status;
+	int error_count;
 } context_t;
 
 /**
@@ -80,6 +81,7 @@ void context_free(context_t *ctx);
 size_t env_populate(context_t *ctx);
 char *envget(context_t *ctx, const char *name);
 int envset(context_t *ctx, char *var, char *value);
+void envunset(context_t *ctx, char *var);
 
 /* memory.c */
 char *_memset(char *src, char c, size_t n);
@@ -104,6 +106,7 @@ char *_starts_with(const char *haystack, const char *needle);
 int exitfn(context_t *ctx);
 int envfn(context_t *ctx);
 int envsetfn(context_t *ctx);
+int envunsetfn(context_t *ctx);
 
 /* output.c */
 void _puts(const char *str);
