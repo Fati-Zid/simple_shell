@@ -2,10 +2,10 @@
 
 /**
  * main - Entry point of the shell program.
- *
  * This function initializes the shell context, populates the environment,
  * runs the shell loop, and then frees the allocated memory before exiting.
- *
+ *@argc: number of arguments
+ *@argv: argument vector
  * Return: ctx->status.
  */
 int main(int argc, char **argv)
@@ -18,7 +18,6 @@ int main(int argc, char **argv)
 	{
 		exit_status = EXIT_FAILURE;
 	}
-
 	envset(ctx);
 	hsh(ctx);
 	exit_status = ctx->status;
