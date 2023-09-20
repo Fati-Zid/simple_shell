@@ -88,8 +88,11 @@ char *_strdup(const char *src);
 /* builtin.c */
 int envfn(context_t *ctx);
 
-/* io.c */
+/* output.c */
 void _puts(const char *str);
 void _putsln(const char *str);
+
+/* input.c */
+ssize_t read_input(context_t *ctx);
 
 #endif
