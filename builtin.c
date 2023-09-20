@@ -15,7 +15,8 @@ int exitfn(context_t *ctx)
 		if (exitcode == -1)
 		{
 			_putserror(ctx, "Illegal number: ");
-			_eputsln(ctx->cmd->argv[1]);
+			_eputs(ctx->cmd->argv[1]);
+			_eputs("\n");
 			return (1);
 		}
 		ctx->status = exitcode;
@@ -34,7 +35,8 @@ int envfn(context_t *ctx)
 
 	while (h != NULL)
 	{
-		_putsln(h->data ? h->data : "(nil)");
+		_puts(h->data ? h->data : "(nil)");
+		_puts("\n");
 		h = h->next;
 	}
 
@@ -46,7 +48,7 @@ int envsetfn(context_t *ctx)
 	command_t *cmd = ctx->cmd;
 	if (cmd->argc != 3)
 	{
-		_eputsln("Incorrect number of arguements");
+		_eputs("Incorrect number of arguements\n");
 		return (1);
 	}
 	if (envset(ctx, cmd->argv[1], cmd->argv[2]))
@@ -60,7 +62,7 @@ int envunsetfn(context_t *ctx)
 
 	if (ctx->cmd->argc == 1)
 	{
-		_eputsln("Too few arguements.");
+		_eputs("Too few arguements.\n");
 		return (1);
 	}
 	for (i = 1; i <= ctx->cmd->argc; i++)

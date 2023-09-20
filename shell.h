@@ -110,9 +110,8 @@ int envunsetfn(context_t *ctx);
 
 /* output.c */
 void _puts(const char *str);
-void _putsln(const char *str);
 void _eputs(const char *str);
-void _eputsln(const char *str);
+void _putsa(int v);
 void _putserror(context_t *ctx, const char *error);
 
 /* input.c */
