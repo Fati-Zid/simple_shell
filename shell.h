@@ -118,4 +118,7 @@ void arg_free(char **argv);
 char **strtow(char *str, int *len, char *d);
 int is_delim(char c, char *delim);
 
+/* utils.c */
+int _erratoi(char *s);
+
 #endif

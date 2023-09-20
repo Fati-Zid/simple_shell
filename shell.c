@@ -98,11 +98,11 @@ void exec_cmd(context_t *ctx)
 			{
 				status = WEXITSTATUS(status);
 				if (status == 126)
-					_putserror(ctx, "Permission denied");
+					_putserror(ctx, "Permission denied\n");
 			}
 		}
 	}
 	else
-		_putserror(ctx, "not found");
+		_putserror(ctx, "not found\n");
 }
 

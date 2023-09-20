@@ -21,5 +21,5 @@ void _putserror(context_t *ctx, const char *error)
 	_puts(": 1: ");
     _puts(ctx->cmd->name);
     _puts(": ");
-    _putsln(error);
+    _puts(error);
 }
