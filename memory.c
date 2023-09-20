@@ -1,7 +1,7 @@
 #include "shell.h"
 
 /**
- * memset - Fills memory with a constant byte.
+ * _memset - Fills memory with a constant byte.
  * @s: Pointer to the memory area.
  * @c: Value to be set.
  * @n: Number of bytes to be set.
@@ -15,8 +15,8 @@ char *_memset(char *s, char c, size_t n)
 	return (s);
 }
 
-void _memcpy(char *dest, const char *src, size_t n) 
+void _memcpy(char *dest, const char *src, size_t n)
 {
-	for (int i=0; i<n; i++) 
-		dest[i] = src[i]; 
-} 
+	for (int i = 0; i < n; i++)
+		dest[i] = src[i];
+}
