@@ -32,11 +32,8 @@ char *find_path(context_t *ctx)
 
 	if (!pathstr)
 		return (NULL);
-	if ((_strlen(cmd) > 2) &&
-		(_starts_with(cmd, "./") ||
-		_starts_with(cmd, "/") ||
-		_starts_with(cmd, "../"))
-	)
+	if ((_strlen(cmd) > 2) && (_starts_with(cmd, "./") ||
+				_starts_with(cmd, "/") || _starts_with(cmd, "../")))
 	{
 		if (iscmd(cmd))
 			return _strdup(cmd, 0, -1);
@@ -58,8 +55,7 @@ char *find_path(context_t *ctx)
 				return (path);
 			if (!pathstr[i])
 				break;
-			curr_pos = i + 1;
-			free(path);
+			curr_pos = i + 1, free(path);
 		}
 		i++;
 	}
