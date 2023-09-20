@@ -21,7 +21,7 @@ ssize_t read_input(context_t *ctx)
 			r--;
 		}
 
-		ctx->cmd->buff = strtrim(buff, &r);
+		ctx->cmd->buff = _strtrim(buff, &r);
 	}
 	free(buff);
 	return (r);
