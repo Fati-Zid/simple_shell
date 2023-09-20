@@ -101,6 +101,7 @@ char *_strcat(char **str1, char *str2);
 
 /* string_ext.c */
 char *_starts_with(const char *haystack, const char *needle);
+int is_white_space(char *str);
 
 /* builtin.c */
 int exitfn(context_t *ctx);
