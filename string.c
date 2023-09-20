@@ -19,13 +19,29 @@ size_t _strlen(const char *str)
 
 char *_strdup(const char *src)
 {
-  char *str;
-  size_t size = _strlen(src) + 1;
+	char *str;
+	size_t size = _strlen(src) + 1;
 
-  str = (char *) malloc(size);
-  if (str) {
-    _memcpy(str, src, size);
-  }
-  return str;
+	str = (char *) malloc(size);
+	if (str) {
+		_memcpy(str, src, size);
+	}
+	return str;
+}
+
+/**
+ * _strcmp - Compare two strings.
+ * @str1: The first string.
+ * @str2: The second string.
+ * Return: 0 if strings are equal, negative if str1 < str2, positive if str1 > str2.
+ */
+unsigned int _strcmp(const char *str1, const char *str2)
+{
+	while(*str1 && (*str1 == *str2))
+	{
+		str1++;
+		str2++;
+	}
+	return *(const unsigned char*)str1 - *(const unsigned char*)str2;
 }
 

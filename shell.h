@@ -4,6 +4,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
+#include<signal.h>
 
 /* Externs */
 extern char **environ;
@@ -62,6 +63,7 @@ typedef struct builtinfun
 
 /* shell.c */
 void hsh(context_t *ctx);
+int exec_builtin(context_t *ctx);
 
 /* context.c */
 context_t *context_init(void);
@@ -78,14 +80,16 @@ void _memcpy(char *dest, const char *src, size_t n);
 
 /* list.c */
 list_t *list_push(list_t **head, const char *data);
-int list_remove_at(list_t **head, unsigned int index);
+unsigned int list_remove_at(list_t **head, unsigned int index);
 void list_free(list_t **head_ptr);
 
 /* string.c */
 size_t _strlen(const char *str);
 char *_strdup(const char *src);
+unsigned int _strcmp(const char *str1, const char *str2);
 
 /* builtin.c */
+int exitfn(context_t *ctx);
 int envfn(context_t *ctx);
 
 /* output.c */

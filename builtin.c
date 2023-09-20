@@ -1,6 +1,17 @@
 #include "shell.h"
 
 /**
+ * exitfn - Handles exit functionality.
+ * @ctx: The shell context.
+ * Return: The exit status.
+ */
+int exitfn(context_t *ctx)
+{
+	(void)ctx;
+	return (-3);
+}
+
+/**
  * envfn - Prints the environment.
  * @ctx: The shell context.
  * Return: Always 0.

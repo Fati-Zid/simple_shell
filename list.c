@@ -43,7 +43,7 @@ list_t *list_push(list_t **head, const char *data)
  * @index: Index of the node to be removed.
  * Return: 1 on success, 0 on failure.
  */
-int list_remove_at(list_t **head, unsigned int index)
+unsigned int list_remove_at(list_t **head, unsigned int index)
 {
 	list_t *node, *prev_node;
 	unsigned int i = 0;
