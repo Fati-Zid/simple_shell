@@ -79,7 +79,7 @@ void context_free(context_t *ctx);
 /* env.c */
 size_t env_populate(context_t *ctx);
 char *envget(context_t *ctx, const char *name);
-int envset(context_t *context, char *var, char *value);
+int envset(context_t *ctx, char *var, char *value);
 
 /* memory.c */
 char *_memset(char *src, char c, size_t n);

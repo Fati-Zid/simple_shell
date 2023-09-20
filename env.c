@@ -37,7 +37,7 @@ char *envget(context_t *ctx, const char *name)
 	return (NULL);
 }
 
-int envset(context_t *context, char *var, char *value)
+int envset(context_t *ctx, char *var, char *value)
 {
 	char *buf = NULL;
 	list_t *node;
@@ -66,26 +66,5 @@ int envset(context_t *context, char *var, char *value)
 	}
 	list_push(&(ctx->env), buf);
 	free(buf);
-	return (0);
-}
-
-/**
- * _myunsetenv - Remove an environment variable
- * @info: Structure containing potential arguments. Used to maintain
- *        constant function prototype.
- * Return: Always 0
- */
-int _myunsetenv(info_t *info)
-{
-	int i;
-
-	if (info->argc == 1)
-	{
-		_eputs("Too few arguements.\n");
-		return (1);
-	}
-	for (i = 1; i <= info->argc; i++)
-		_unsetenv(info, info->argv[i]);
-
 	return (0);
 }
