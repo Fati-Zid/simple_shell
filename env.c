@@ -36,16 +36,15 @@ char *find_path(context_t *ctx)
 				_starts_with(cmd, "/") || _starts_with(cmd, "../")))
 	{
 		if (iscmd(cmd))
-			return _strdup(cmd, 0, -1);
+			return (_strdup(cmd, 0, -1));
 	}
 	while (1)
 	{
 		if (!pathstr[i] || pathstr[i] == ':')
 		{
 			path = _strdup(pathstr, curr_pos, i - 1);
-			if (!*path) {
+			if (!*path)
 				_strcat(&path, cmd);
-			}
 			else
 			{
 				_strcat(&path, "/");
