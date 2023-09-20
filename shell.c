@@ -63,12 +63,12 @@ int exec_builtin(context_t *ctx)
  */
 void exec_cmd(context_t *ctx)
 {
-	char *path = NULL;
 	pid_t child_pid;
 	static char *newenviron[] = {NULL};
+	command_t *cmd = ctx->cmd;
 	int status = 0;
 
-	path = find_path(ctx);
+	cmd->path = find_path(ctx);
 
 	if (path)
 	{
@@ -82,7 +82,7 @@ void exec_cmd(context_t *ctx)
 
 		if (child_pid == 0)
 		{
-			if(execve(path, ctx->cmd->argv, newenviron) == -1)
+			if(execve(cmd->path, cmd->argv, newenviron) == -1)
 			{
 				command_free(ctx);
 				context_free(ctx);
@@ -101,7 +101,6 @@ void exec_cmd(context_t *ctx)
 					_putserror(ctx, "Permission denied");
 			}
 		}
-		free(path);
 	}
 	else
 		_putserror(ctx, "not found");

@@ -36,6 +36,7 @@ typedef struct command
 	char *name;
 	char **argv;
 	int argc;
+	char *path;
 } command_t;
 
 /**

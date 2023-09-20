@@ -39,7 +39,7 @@ char *find_path(context_t *ctx)
 	)
 	{
 		if (iscmd(cmd))
-			return (cmd);
+			return _strdup(cmd, 0, -1);
 	}
 	while (1)
 	{

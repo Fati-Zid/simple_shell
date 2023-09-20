@@ -51,6 +51,12 @@ void command_free(context_t *ctx)
 		cmd->name = NULL;
 	}
 
+	if(cmd->path != NULL)
+	{
+		free(cmd->path);
+		cmd->path = NULL;
+	}
+
 	cmd->argc = 0;
 }
 
