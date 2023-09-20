@@ -46,10 +46,13 @@ char *find_path(context_t *ctx)
 		if (!pathstr[i] || pathstr[i] == ':')
 		{
 			path = _strdup(pathstr, curr_pos, i - 1);
-			if (!*path)
+			if (!*path) {
+				printf("first\n");
 				_strcat(&path, cmd);
+			}
 			else
 			{
+				printf("second\n");
 				_strcat(&path, "/");
 				_strcat(&path, cmd);
 			}
