@@ -94,6 +94,7 @@ void _memcpy(char *dest, const char *src, size_t n);
 list_t *list_push(list_t **head, const char *data);
 unsigned int list_remove_at(list_t **head, unsigned int index);
 char **list_to_strings(list_t *head);
+size_t list_len(const list_t *h);
 void list_free(list_t **head_ptr);
 
 /* string.c */
