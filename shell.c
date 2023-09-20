@@ -65,7 +65,6 @@ int exec_builtin(context_t *ctx)
 void exec_cmd(context_t *ctx)
 {
 	pid_t child_pid;
-	static char *newenviron[] = {NULL};
 	command_t *cmd = ctx->cmd;
 	int status = 0;
 
@@ -83,7 +82,7 @@ void exec_cmd(context_t *ctx)
 
 		if (child_pid == 0)
 		{
-			if(execve(cmd->path, cmd->argv, newenviron) == -1)
+			if(execve(cmd->path, cmd->argv, get_environ(ctx)) == -1)
 			{
 				command_free(ctx);
 				context_free(ctx);
