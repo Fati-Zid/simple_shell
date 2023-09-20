@@ -64,45 +64,57 @@ int exec_builtin(context_t *ctx)
  */
 void exec_cmd(context_t *ctx)
 {
-	pid_t child_pid;
 	command_t *cmd = ctx->cmd;
-	int status = 0;
 
 	cmd->path = find_path(ctx);
 
 	if (cmd->path)
+		fork_cmd(ctx);
+	else
 	{
-		child_pid = fork();
-
-		if (child_pid == -1)
-		{
-			perror("Error:");
-			return;
-		}
-
-		if (child_pid == 0)
-		{
-			if(execve(cmd->path, cmd->argv, get_environ(ctx)) == -1)
-			{
-				command_free(ctx);
-				context_free(ctx);
-				if (errno == EACCES)
-					exit(126);
-				exit(1);
-			}
-		}
+		if ((ctx->isatty || envget(ctx, "PATH=")
+				|| cmd->name[0] == '/') && iscmd(cmd->name))
+			fork_cmd(ctx);
 		else
 		{
-			wait(&(status));
-			if (WIFEXITED(status))
-			{
-				status = WEXITSTATUS(status);
-				if (status == 126)
-					_putserror(ctx, "Permission denied\n");
-			}
+			ctx->status = 127;
+			_putserror(ctx, "not found\n");
+		}
+	}
+}
+
+void fork_cmd(context_t *ctx)
+{
+	pid_t child_pid;
+
+	child_pid = fork();
+
+	if (child_pid == -1)
+	{
+		perror("Error:");
+		return;
+	}
+
+	if (child_pid == 0)
+	{
+		if(execve(cmd->path, cmd->argv, get_environ(ctx)) == -1)
+		{
+			command_free(ctx);
+			context_free(ctx);
+			if (errno == EACCES)
+				exit(126);
+			exit(1);
 		}
 	}
 	else
-		_putserror(ctx, "not found\n");
+	{
+		wait(&(ctx->status));
+		if (WIFEXITED(ctx->status))
+		{
+			ctx->status = WEXITSTATUS(ctx->status);
+			if (ctx->status == 126)
+				_putserror(ctx, "Permission denied\n");
+		}
+	}
 }
 

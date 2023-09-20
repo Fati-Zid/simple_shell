@@ -74,6 +74,7 @@ typedef struct builtinfun
 void hsh(context_t *ctx);
 int exec_builtin(context_t *ctx);
 void exec_cmd(context_t *ctx);
+void fork_cmd(context_t *ctx);
 
 /* context.c */
 context_t *context_init(char *pname);

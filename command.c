@@ -44,7 +44,6 @@ char *find_path(context_t *ctx)
 		return (NULL);
 	if ((_strlen(cmd) > 2) &&
 		(_starts_with(cmd, "./") ||
-		_starts_with(cmd, "/") ||
 		_starts_with(cmd, "../"))
 	)
 	{
