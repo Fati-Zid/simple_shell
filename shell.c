@@ -9,7 +9,7 @@ void hsh(context_t *ctx)
 	ssize_t r = 0;
 	int ret = 0;
 
-	while (r != -1 && ret != -3 && ctx->status == 0)
+	while (r != -1 && ret != -3)
 	{
 		if (ctx->isatty)
 			_puts("($) ");
