@@ -14,7 +14,7 @@ void _eputs(const char *str)
     write(2, str, _strlen(str));
 }
 
-void _putsa(int v)
+void _eputsa(int v)
 {
     char str[100];
     int r, i=0;
@@ -25,7 +25,7 @@ void _putsa(int v)
         i++;
     }
     str[i] = '\0';
-    _puts(str);
+    _eputs(str);
 }
 
 void _putserror(context_t *ctx, const char *error)
@@ -33,7 +33,7 @@ void _putserror(context_t *ctx, const char *error)
     ctx->error_count++;
     _eputs(ctx->pname);
 	_eputs(": ");
-    _putsa(ctx->error_count);
+    _eputsa(ctx->error_count);
     _eputs(": ");
     _eputs(ctx->cmd->name);
     _eputs(": ");
