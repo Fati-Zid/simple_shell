@@ -17,6 +17,7 @@ int exitfn(context_t *ctx)
 			_putserror(ctx, "Illegal number: ");
 			_eputs(ctx->cmd->argv[1]);
 			_eputs("\n");
+			ctx->status = 2;
 			return (1);
 		}
 		ctx->status = exitcode;
