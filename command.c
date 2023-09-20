@@ -35,7 +35,9 @@ unsigned int command_parse(context_t *ctx)
 /**
  * command_free - Frees memory allocated for the command attributes.
  * @ctx: The shell context containing the command.
+ * Return:nothings
  */
+
 void command_free(context_t *ctx)
 {
     command_t *cmd = ctx->cmd;
