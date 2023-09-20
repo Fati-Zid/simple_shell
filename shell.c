@@ -101,6 +101,7 @@ void exec_cmd(context_t *ctx)
 					_putserror(ctx, "Permission denied");
 			}
 		}
+		free(path);
 	}
 	else
 		_putserror(ctx, "not found");
