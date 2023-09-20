@@ -24,6 +24,7 @@ int is_white_space(char *str)
 	while(str) {
 		if(!(*str == ' ' || *str == '\t' || *str == '\n'))
 			return (0);
+		str++;
 	}
 	return (1);
 }
