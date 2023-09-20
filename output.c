@@ -16,12 +16,16 @@ void _eputs(const char *str)
 
 void _putsa(int v)
 {
-    int r;
+    char str[100];
+    int r, i=0;
     while (v != 0) {
         r = v % 10;
         v = v / 10;
-        _puts('0' + r);
-    } 
+        str[i] = (char)('0' + r);
+        i++;
+    }
+    str[i] = '\0';
+    _puts(str);
 }
 
 void _putserror(context_t *ctx, const char *error)
