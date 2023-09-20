@@ -20,7 +20,7 @@ int main(int argc, char **argv)
 
 	envset(ctx);
 	hsh(ctx);
-    exit_status = ctx->status;
+	exit_status = ctx->status;
 	context_free(ctx);
 
 	return (exit_status);
