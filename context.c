@@ -4,7 +4,7 @@
  * context_init - Initializes a new shell context.
  * Return: A pointer to the created context, or NULL on failure.
  */
-context_t *context_init(void)
+context_t *context_init(char *pname)
 {
 	/* Create context */
 	context_t *ctx = (context_t *)malloc(sizeof(context_t));
@@ -24,48 +24,12 @@ context_t *context_init(void)
 	/* Set interactive mode */
 	ctx->isatty = (int)(isatty(STDIN_FILENO) > 0);
 
+	/* Set process name */
+	ctx->pname = pname;
+
 	/* Init status */
 	ctx->status = 0;
 	return (ctx);
-}
-
-/**
- * command_free - Frees memory allocated for the command attributes.
- * @ctx: The shell context containing the command.
- */
-void command_free(context_t *ctx)
-{
-    command_t *cmd = ctx->cmd;
-	if (cmd->buff != NULL)
-	{
-		free(cmd->buff);
-		cmd->buff = NULL;
-	}
-
-	if (cmd->argv != NULL)
-	{
-		arg_free(cmd->argv);
-		cmd->argv = NULL;
-	}
-
-	if (cmd->name != NULL)
-	{
-		free(cmd->name);
-		cmd->name = NULL;
-	}
-
-	cmd->argc = 0;
-}
-
-void arg_free(char **argv)
-{
-	char **a = argv;
-
-	if (!argv)
-		return;
-	while (*argv)
-		free(*argv++);
-	free(a);
 }
 
 /**

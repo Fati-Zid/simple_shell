@@ -17,16 +17,42 @@ size_t _strlen(const char *str)
 	return (i);
 }
 
-char *_strdup(const char *src)
+/**
+ * _strdup - Duplicate a portion of a string into a new buffer.
+ * @str: The original string.
+ * @start: The starting index of the portion.
+ * @stop: The stopping index of the portion.
+ * Return: Pointer to the newly allocated buffer with duplicated content.
+ */
+char *_strdup(const char *str, int start, int stop)
 {
-	char *str;
-	size_t size = _strlen(src) + 1;
+	int length, i, k;
+	char *buff = NULL;
+	int toend = stop == -1;
 
-	str = (char *) malloc(size);
-	if (str) {
-		_memcpy(str, src, size);
+	if (str == NULL)
+		return (NULL);
+
+	if (toend)
+	{
+		length = _strlen(str);
+		stop = length - 1;
+	} else
+	{
+		length = (stop - start) + 1;
 	}
-	return str;
+
+	buff = (char *)malloc((length + 1) * sizeof(char));
+
+	if (!buff)
+		return (NULL);
+
+	for (k = 0, i = start; i <= stop; i++, k++)
+		buff[k] = str[i];
+
+	buff[k] = '\0';
+
+	return (buff);
 }
 
 /**
@@ -43,5 +69,56 @@ unsigned int _strcmp(const char *str1, const char *str2)
 		str2++;
 	}
 	return *(const unsigned char*)str1 - *(const unsigned char*)str2;
+}
+
+/**
+ * _starts_with - Check if a string starts with a given substring.
+ * @haystack: The string to search in.
+ * @needle: The substring to check for.
+ * Return: Pointer to the remaining characters if found, NULL otherwise.
+ */
+char *_starts_with(const char *haystack, const char *needle)
+{
+	while (*needle)
+		if (*needle++ != *haystack++)
+			return (NULL);
+	return ((char *)haystack);
+}
+
+/**
+ * _strcat - Concatenate two strings.
+ * @str1: The first string.
+ * @str2: The second string.
+ * Return: Pointer to the destination string.
+ */
+char *_strcat(char **str1, char *str2)
+{
+	char *ret;
+	int newsize, i = 0, k = 0;
+
+	if (!*str1 || !str2)
+		return (NULL);
+
+	newsize = _strlen(*str1) + _strlen(str2);
+	ret = (char *)malloc((newsize + 1) * sizeof(char));
+
+	if (!ret)
+		return (NULL);
+
+	while ((*str1)[i] != '\0')
+	{
+		ret[i] = (*str1)[i];
+		i++;
+	}
+	while (str2[k] != '\0')
+	{
+		ret[i] = str2[k];
+		i++;
+		k++;
+	}
+	ret[i] = '\0';
+	free(*str1);
+	*str1 = ret;
+	return (ret);
 }
 

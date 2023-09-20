@@ -8,10 +8,10 @@
  *
  * Return: ctx->status.
  */
-int main(void)
+int main(int argc, char **argv)
 {
     int exit_status;
-	context_t *ctx = context_init();
+	context_t *ctx = context_init(argv[0]);
 
 	if (ctx == NULL)
 	{

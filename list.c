@@ -19,7 +19,7 @@ list_t *list_push(list_t **head, const char *data)
 	if (new_node == NULL)
 		return (NULL);
 	_memset((void *)new_node, 0, sizeof(list_t));
-	new_node->data = _strdup(data);
+	new_node->data = _strdup(data, 0, -1);
 	if (new_node->data == NULL)
 	{
 		free(new_node);
