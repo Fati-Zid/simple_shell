@@ -8,7 +8,7 @@
 int exitfn(context_t *ctx)
 {
 	int exitcode;
-	(void)ctx;
+	
 	if (ctx->cmd->argv[1])
 	{
 		exitcode = _erratoi(ctx->cmd->argv[1]);

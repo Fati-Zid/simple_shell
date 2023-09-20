@@ -77,7 +77,7 @@ context_t *context_init(char *pname);
 void context_free(context_t *ctx);
 
 /* env.c */
-size_t env_populate(context_t *ctx)
+size_t env_populate(context_t *ctx);
 char *envget(context_t *ctx, const char *name);
 int envset(context_t *context, char *var, char *value);
 
