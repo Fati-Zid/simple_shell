@@ -1,0 +1,31 @@
+#include "shell.h"
+
+/**
+ * _strlen - Calculate the length of a string.
+ * @str: The input string.
+ * Return: The length of the string.
+ */
+size_t _strlen(const char *str)
+{
+	size_t i = 0;
+
+	if (str == NULL)
+		return (0);
+
+	while (*str++)
+		i++;
+	return (i);
+}
+
+char *_strdup(const char *src)
+{
+  char *str;
+  size_t size = _strlen(src) + 1;
+
+  str = (char *) malloc(size);
+  if (str) {
+    _memcpy(str, src, size);
+  }
+  return str;
+}
+
