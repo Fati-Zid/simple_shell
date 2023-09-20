@@ -15,11 +15,22 @@ void _putsln(const char *str)
     _puts("\n");
 }
 
+void _eputs(const char *str)
+{
+    write(2, str, _strlen(str));
+}
+
+void _eputsln(const char *str)
+{
+    _eputs(str);
+    _eputs("\n");
+}
+
 void _putserror(context_t *ctx, const char *error)
 {
-    _puts(ctx->pname);
-	_puts(": 1: ");
-    _puts(ctx->cmd->name);
-    _puts(": ");
-    _puts(error);
+    _eputs(ctx->pname);
+	_eputs(": 1: ");
+    _eputs(ctx->cmd->name);
+    _eputs(": ");
+    _eputs(error);
 }

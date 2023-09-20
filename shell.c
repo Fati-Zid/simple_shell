@@ -42,6 +42,7 @@ int exec_builtin(context_t *ctx)
 	builtinfun_t table[] = {
 		{"exit", exitfn},
 		{"env", envfn},
+		{"setenv", envsetfn},
 		{NULL, NULL}
 	};
 

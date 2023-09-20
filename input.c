@@ -23,7 +23,5 @@ ssize_t read_input(context_t *ctx)
 
 		ctx->cmd->buff = buff;
 	}
-
-	// free(buff);
 	return (r);
 }

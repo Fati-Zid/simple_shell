@@ -72,17 +72,25 @@ unsigned int _strcmp(const char *str1, const char *str2)
 }
 
 /**
- * _starts_with - Check if a string starts with a given substring.
- * @haystack: The string to search in.
- * @needle: The substring to check for.
- * Return: Pointer to the remaining characters if found, NULL otherwise.
+ * _strcpy - copies a string
+ * @dest: the destination
+ * @src: the source
+ *
+ * Return: pointer to destination
  */
-char *_starts_with(const char *haystack, const char *needle)
+char *_strcpy(char *dest, char *src)
 {
-	while (*needle)
-		if (*needle++ != *haystack++)
-			return (NULL);
-	return ((char *)haystack);
+	int i = 0;
+
+	if (dest == src || src == 0)
+		return (dest);
+	while (src[i])
+	{
+		dest[i] = src[i];
+		i++;
+	}
+	dest[i] = 0;
+	return (dest);
 }
 
 /**

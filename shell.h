@@ -77,10 +77,9 @@ context_t *context_init(char *pname);
 void context_free(context_t *ctx);
 
 /* env.c */
-size_t envset(context_t *ctx);
-char *find_path(context_t *ctx);
-int iscmd(char *path);
+size_t env_populate(context_t *ctx)
 char *envget(context_t *ctx, const char *name);
+int envset(context_t *context, char *var, char *value);
 
 /* memory.c */
 char *_memset(char *src, char c, size_t n);
@@ -95,16 +94,22 @@ void list_free(list_t **head_ptr);
 size_t _strlen(const char *str);
 char *_strdup(const char *str, int start, int stop);
 unsigned int _strcmp(const char *str1, const char *str2);
-char *_starts_with(const char *haystack, const char *needle);
+char *_strcpy(char *dest, char *src);
 char *_strcat(char **str1, char *str2);
+
+/* string_ext.c */
+char *_starts_with(const char *haystack, const char *needle);
 
 /* builtin.c */
 int exitfn(context_t *ctx);
 int envfn(context_t *ctx);
+int envsetfn(context_t *ctx);
 
 /* output.c */
 void _puts(const char *str);
 void _putsln(const char *str);
+void _eputs(const char *str);
+void _eputsln(const char *str);
 void _putserror(context_t *ctx, const char *error);
 
 /* input.c */
@@ -112,6 +117,8 @@ ssize_t read_input(context_t *ctx);
 
 /* command.c */
 unsigned int command_parse(context_t *ctx);
+char *find_path(context_t *ctx);
+int iscmd(char *path);
 void command_free(context_t *ctx);
 void arg_free(char **argv);
 
