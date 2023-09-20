@@ -76,6 +76,48 @@ unsigned int list_remove_at(list_t **head, unsigned int index)
 	return (0);
 }
 
+char **list_to_strings(list_t *head)
+{
+	list_t *node = head;
+	size_t i = list_len(head), j;
+	char **strs;
+	char *str;
+
+	if (!head || !i)
+		return (NULL);
+	strs = malloc(sizeof(char *) * (i + 1));
+	if (!strs)
+		return (NULL);
+	for (i = 0; node; node = node->next, i++)
+	{
+		str = malloc(_strlen(node->data) + 1);
+		if (!str)
+		{
+			for (j = 0; j < i; j++)
+				free(strs[j]);
+			free(strs);
+			return (NULL);
+		}
+
+		str = _strcpy(str, node->data);
+		strs[i] = str;
+	}
+	strs[i] = NULL;
+	return (strs);
+}
+
+size_t list_len(const list_t *h)
+{
+	size_t i = 0;
+
+	while (h)
+	{
+		h = h->next;
+		i++;
+	}
+	return (i);
+}
+
 /**
  * list_free - Frees all nodes and their data in a linked list.
  * @head_ptr: Pointer to the head of the list.

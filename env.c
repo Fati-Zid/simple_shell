@@ -60,12 +60,14 @@ int envset(context_t *ctx, char *var, char *value)
 		{
 			free(node->data);
 			node->data = buf;
+			ctx->env_changed = 1;
 			return (0);
 		}
 		node = node->next;
 	}
 	list_push(&(ctx->env), buf);
 	free(buf);
+	ctx->env_changed = 1;
 	return (0);
 }
 
@@ -83,7 +85,7 @@ void envunset(context_t *ctx, char *var)
 		p = _starts_with(node->data, var);
 		if (p && *p == '=')
 		{
-			list_remove_at(&(ctx->env), i);
+			ctx->env_changed = list_remove_at(&(ctx->env), i);
 			i = 0;
 			node = ctx->env;
 			continue;
@@ -91,4 +93,15 @@ void envunset(context_t *ctx, char *var)
 		node = node->next;
 		i++;
 	}
+}
+
+char **get_environ(context_t *ctx)
+{
+	if (!ctx->environ || ctx->env_changed)
+	{
+		ctx->environ = list_to_strings(ctx->env);
+		ctx->env_changed = 0;
+	}
+
+	return (ctx->environ);
 }
