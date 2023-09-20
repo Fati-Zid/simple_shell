@@ -70,7 +70,7 @@ void exec_cmd(context_t *ctx)
 
 	cmd->path = find_path(ctx);
 
-	if (path)
+	if (cmd->path)
 	{
 		child_pid = fork();
 
