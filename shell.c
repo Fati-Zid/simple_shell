@@ -15,10 +15,11 @@ void hsh(context_t *ctx)
 			_puts("($) ");
 
 		r = read_input(ctx);
-
+		printf("R: %d\n", (int) r);
 		if (r > 0)
 		{
 			command_parse(ctx);
+			printf("NAME: %s >>>>\n", ctx->cmd->name);
 			ret = exec_builtin(ctx);
 			if (ret == -1)
 				exec_cmd(ctx);
