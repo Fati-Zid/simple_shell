@@ -1,5 +1,11 @@
 #include "shell.h"
 
+/**
+ * command_parse: function that ...
+ * @ctx: The shell context containing the command.
+ * Return: 1 on success and -1 on failure
+ */
+
 unsigned int command_parse(context_t *ctx)
 {
 	command_t *cmd = ctx->cmd;
