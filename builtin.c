@@ -7,17 +7,18 @@
  */
 int exitfn(context_t *ctx)
 {
+	int exitcode;
 	(void)ctx;
 	if (ctx->cmd->argv[1])
 	{
-		exitcheck = _erratoi(ctx->cmd->argv[1]);
-		if (exitcheck == -1)
+		exitcode = _erratoi(ctx->cmd->argv[1]);
+		if (exitcode == -1)
 		{
 			_putserror(ctx, "Illegal number: ");
 			_putsln(ctx->cmd->argv[1]);
 			return (1);
 		}
-		ctx->status = exitcheck;
+		ctx->status = exitcode;
 	}
 	return (-3);
 }
