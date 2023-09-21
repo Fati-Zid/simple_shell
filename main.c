@@ -10,6 +10,7 @@
  */
 int main(int argc, char **argv)
 {
+	(void) argc;
 	int exit_status;
 
 	context_t *ctx = context_init(argv[0]);
