@@ -47,7 +47,7 @@ char *find_path(context_t *ctx)
 	pathstr = envget(ctx, "PATH=");
 
 	if ((ctx->isatty || pathstr || cmd[0] == '/') && iscmd(cmd))
-		return (strdup(cmd, 0, -1));
+		return (_strdup(cmd, 0, -1));
 
 	if (!pathstr)
 		return (NULL);
