@@ -1,7 +1,7 @@
 #include "shell.h"
 
 /**
- * envset - Populates the shell environment list.
+ * env_populate - Populates the shell environment list.
  * @ctx: The shell context.
  * Return: The number of environment variables.
  */
@@ -37,6 +37,14 @@ char *envget(context_t *ctx, const char *name)
 	return (NULL);
 }
 
+/**
+ * envset - Sets an environment variable in the shell context.
+ * @ctx: The shell context.
+ * @var: The name of the variable.
+ * @value: The value to set for the variable.
+ *
+ * Return: 0 on success, 1 on failure.
+ */
 int envset(context_t *ctx, char *var, char *value)
 {
 	char *buf = NULL;
@@ -49,9 +57,11 @@ int envset(context_t *ctx, char *var, char *value)
 	buf = malloc(_strlen(var) + _strlen(value) + 2);
 	if (!buf)
 		return (1);
+
 	_strcpy(buf, var);
 	_strcat(&buf, "=");
 	_strcat(&buf, value);
+
 	node = ctx->env;
 	while (node)
 	{
@@ -65,12 +75,18 @@ int envset(context_t *ctx, char *var, char *value)
 		}
 		node = node->next;
 	}
+
 	list_push(&(ctx->env), buf);
 	free(buf);
 	ctx->env_changed = 1;
 	return (0);
 }
 
+/**
+ * envunset - Unsets an environment variable in the shell context.
+ * @ctx: The shell context.
+ * @var: The name of the variable to unset.
+ */
 void envunset(context_t *ctx, char *var)
 {
 	list_t *node = ctx->env;
@@ -95,6 +111,12 @@ void envunset(context_t *ctx, char *var)
 	}
 }
 
+/**
+ * get_environ - Gets the environment variables as an array of strings.
+ * @ctx: The shell context.
+ *
+ * Return: An array of strings representing the environment variables.
+ */
 char **get_environ(context_t *ctx)
 {
 	if (!ctx->environ || ctx->env_changed)
@@ -105,3 +127,4 @@ char **get_environ(context_t *ctx)
 
 	return (ctx->environ);
 }
+
