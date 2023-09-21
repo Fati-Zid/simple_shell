@@ -18,7 +18,8 @@ int main(int argc, char **argv)
 	{
 		exit_status = EXIT_FAILURE;
 	}
-	envset(ctx);
+
+	env_populate(ctx);
 	hsh(ctx);
 	exit_status = ctx->status;
 	context_free(ctx);
