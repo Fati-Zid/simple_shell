@@ -59,16 +59,16 @@ char *_strdup(const char *str, int start, int stop)
  * _strcmp - Compare two strings.
  * @str1: The first string.
  * @str2: The second string.
- * Return: 0 if strings are equal, negative if str1 < str2, positive if str1 > str2.
+ *Return:0 if strings are equal,negative if str1 < str2,positive if str1 > str2
  */
 unsigned int _strcmp(const char *str1, const char *str2)
 {
-	while(*str1 && (*str1 == *str2))
+	while (*str1 && (*str1 == *str2))
 	{
 		str1++;
 		str2++;
 	}
-	return *(const unsigned char*)str1 - *(const unsigned char*)str2;
+	return (*(const unsigned char *)str1 - *(const unsigned char *)str2);
 }
 
 /**

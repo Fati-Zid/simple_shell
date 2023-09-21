@@ -30,6 +30,7 @@ typedef struct list
  * @name: Name of the command.
  * @argv: Array of command arguments. table string
  * @argc: Number of arguments.
+ * @path: the path
  */
 typedef struct command
 {
@@ -46,6 +47,7 @@ typedef struct command
  * @cmd: Pointer to a command structure.
  * @env: Pointer to the environment linked list.
  * @status: Shell exit status.
+ * @pname: ...
  */
 typedef struct context
 {

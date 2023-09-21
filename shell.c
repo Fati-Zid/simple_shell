@@ -77,6 +77,11 @@ void exec_cmd(context_t *ctx)
 	}
 }
 
+/**
+ * fork_cmd - ...
+ * @ctx: the shell context
+ * Return: ...
+ */
 void fork_cmd(context_t *ctx)
 {
 	pid_t child_pid;
@@ -91,7 +96,7 @@ void fork_cmd(context_t *ctx)
 
 	if (child_pid == 0)
 	{
-		if(execve(ctx->cmd->path, ctx->cmd->argv, get_environ(ctx)) == -1)
+		if (execve(ctx->cmd->path, ctx->cmd->argv, get_environ(ctx)) == -1)
 		{
 			command_free(ctx);
 			context_free(ctx);

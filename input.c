@@ -21,7 +21,7 @@ ssize_t read_input(context_t *ctx)
 			r--;
 		}
 
-		if(is_white_space(buff))
+		if (is_white_space(buff))
 			r = 0;
 
 		ctx->cmd->buff = buff;

@@ -1,5 +1,11 @@
 #include "shell.h"
 
+/**
+ * command_parse - function that ...
+ * @ctx: The shell context containing the command.
+ * Return: 1 on success and -1 on failure
+ */
+
 unsigned int command_parse(context_t *ctx)
 {
 	command_t *cmd = ctx->cmd;
@@ -14,7 +20,7 @@ unsigned int command_parse(context_t *ctx)
 		cmd->argv = (char **)malloc(sizeof(char *) * 2);
 		if (cmd->argv == NULL)
 			return (-1);
-		
+
 		_memset((void *)cmd->argv, 0, sizeof(char *) * 2);
 		cmd->argv[0] = _strdup(cmd->buff, 0, -1);
 		cmd->argv[1] = NULL;
@@ -41,7 +47,7 @@ char *find_path(context_t *ctx)
 	pathstr = envget(ctx, "PATH=");
 
 	if ((ctx->isatty || pathstr || cmd[0] == '/') && iscmd(cmd))
-		return _strdup(cmd, 0, -1);
+		return (strdup(cmd, 0, -1));
 
 	if (!pathstr)
 		return (NULL);
@@ -51,9 +57,8 @@ char *find_path(context_t *ctx)
 		if (!pathstr[i] || pathstr[i] == ':')
 		{
 			path = _strdup(pathstr, curr_pos, i - 1);
-			if (!*path) {
+			if (!*path)
 				path = _strcat(&path, cmd);
-			}
 			else
 			{
 				path = _strcat(&path, "/");
@@ -61,7 +66,8 @@ char *find_path(context_t *ctx)
 			}
 			if (iscmd(path))
 				return (path);
-			if (!pathstr[i]) {
+			if (!pathstr[i])
+			{
 				free(path);
 				break;
 			}
@@ -95,10 +101,12 @@ int iscmd(char *path)
 /**
  * command_free - Frees memory allocated for the command attributes.
  * @ctx: The shell context containing the command.
+ * Return:nothings
  */
 void command_free(context_t *ctx)
 {
-    command_t *cmd = ctx->cmd;
+	command_t *cmd = ctx->cmd;
+
 	if (cmd->buff != NULL)
 	{
 		free(cmd->buff);
@@ -117,14 +125,19 @@ void command_free(context_t *ctx)
 		cmd->name = NULL;
 	}
 
-	if(cmd->path != NULL)
+	if (cmd->path != NULL)
 	{
 		free(cmd->path);
 		cmd->path = NULL;
 	}
-
 	cmd->argc = 0;
 }
+
+/**
+ * arg_free - function that free argv
+ * @argv: array of argument
+ * Return: nothing
+ */
 
 void arg_free(char **argv)
 {
