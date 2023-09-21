@@ -9,13 +9,12 @@ void hsh(context_t *ctx)
 	ssize_t r = 0;
 	int ret = 0;
 
-	while (r != -1 && ret != -3 && ctx->status == 0)
+	while (r != -1 && ret != -3)
 	{
 		if (ctx->isatty)
 			_puts("($) ");
 
 		r = read_input(ctx);
-
 		if (r > 0)
 		{
 			command_parse(ctx);
@@ -42,6 +41,8 @@ int exec_builtin(context_t *ctx)
 	builtinfun_t table[] = {
 		{"exit", exitfn},
 		{"env", envfn},
+		{"setenv", envsetfn},
+		{"unsetenv", envunsetfn},
 		{NULL, NULL}
 	};
 
@@ -63,46 +64,51 @@ int exec_builtin(context_t *ctx)
  */
 void exec_cmd(context_t *ctx)
 {
-	pid_t child_pid;
-	static char *newenviron[] = {NULL};
 	command_t *cmd = ctx->cmd;
-	int status = 0;
 
 	cmd->path = find_path(ctx);
 
 	if (cmd->path)
+		fork_cmd(ctx);
+	else
 	{
-		child_pid = fork();
+		ctx->status = 127;
+		_putserror(ctx, "not found\n");
+	}
+}
 
-		if (child_pid == -1)
-		{
-			perror("Error:");
-			return;
-		}
+void fork_cmd(context_t *ctx)
+{
+	pid_t child_pid;
 
-		if (child_pid == 0)
+	child_pid = fork();
+
+	if (child_pid == -1)
+	{
+		perror("Error:");
+		return;
+	}
+
+	if (child_pid == 0)
+	{
+		if(execve(ctx->cmd->path, ctx->cmd->argv, get_environ(ctx)) == -1)
 		{
-			if(execve(cmd->path, cmd->argv, newenviron) == -1)
-			{
-				command_free(ctx);
-				context_free(ctx);
-				if (errno == EACCES)
-					exit(126);
-				exit(1);
-			}
-		}
-		else
-		{
-			wait(&(status));
-			if (WIFEXITED(status))
-			{
-				status = WEXITSTATUS(status);
-				if (status == 126)
-					_putserror(ctx, "Permission denied\n");
-			}
+			command_free(ctx);
+			context_free(ctx);
+			if (errno == EACCES)
+				exit(126);
+			exit(1);
 		}
 	}
 	else
-		_putserror(ctx, "not found\n");
+	{
+		wait(&(ctx->status));
+		if (WIFEXITED(ctx->status))
+		{
+			ctx->status = WEXITSTATUS(ctx->status);
+			if (ctx->status == 126)
+				_putserror(ctx, "Permission denied\n");
+		}
+	}
 }
 
