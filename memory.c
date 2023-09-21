@@ -15,6 +15,13 @@ char *_memset(char *s, char c, size_t n)
 	return (s);
 }
 
+/**
+ * _memcpy - function that copy a block of memory
+ * @dest: pointer to destination where the data is to be copied.
+ * @src: pointer to the source from where the data is to be copied.
+ * @n: number of bytes to be copied.
+ * Return: nothings
+ */
 void _memcpy(char *dest, const char *src, size_t n)
 {
 	for (int i = 0; i < n; i++)
