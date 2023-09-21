@@ -25,6 +25,8 @@ char *_memset(char *s, char c, size_t n)
  */
 void _memcpy(char *dest, const char *src, size_t n)
 {
-	for (int i = 0; i < n; i++)
+	unsigned long int i;
+
+	for (i = 0; i < n; i++)
 		dest[i] = src[i];
 }
