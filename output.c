@@ -11,8 +11,8 @@ void _puts(const char *str)
 
 void _putsln(const char *str)
 {
-    _puts(str);
-    _puts("\n");
+       	_puts(str);
+	_puts("\n");
 }
 
 void _putserror(context_t *ctx, const char *error)
