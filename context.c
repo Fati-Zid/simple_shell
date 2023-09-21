@@ -8,6 +8,7 @@ context_t *context_init(char *pname)
 {
 	/* Create context */
 	context_t *ctx = (context_t *)malloc(sizeof(context_t));
+
 	if (ctx == NULL)
 		return (NULL);
 	_memset((void *)ctx, 0, sizeof(context_t));
