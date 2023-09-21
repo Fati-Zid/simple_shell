@@ -14,10 +14,16 @@ void _eputs(const char *str)
 	write(2, str, _strlen(str));
 }
 
+/**
+ * _eputsa - ....
+ * @v: ...
+ * Return: ...
+ */
+
 void _eputsa(int v)
 {
 	char str[100];
-	int r, i=0;
+	int r, i = 0;
 
 	while (v != 0)
 	{
@@ -42,7 +48,7 @@ void _putserror(context_t *ctx, const char *error)
 	_eputs(ctx->pname);
 	_eputs(": ");
 	_eputsa(ctx->error_count);
-       	_eputs(": ");
+	_eputs(": ");
 	_eputs(ctx->cmd->name);
 	_eputs(": ");
 	_eputs(error);

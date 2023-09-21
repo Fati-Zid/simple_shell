@@ -77,6 +77,11 @@ void exec_cmd(context_t *ctx)
 	}
 }
 
+/**
+ * fork_cmd - ...
+ * @ctx: the shell context
+ * Return: ...
+ */
 void fork_cmd(context_t *ctx)
 {
 	pid_t child_pid;
