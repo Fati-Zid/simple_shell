@@ -72,17 +72,8 @@ void exec_cmd(context_t *ctx)
 		fork_cmd(ctx);
 	else
 	{
-		if ((ctx->isatty || envget(ctx, "PATH=")
-				|| cmd->name[0] == '/') && iscmd(cmd->name))
-		{
-			cmd->path = _strdup(cmd->name, 0, -1);
-			fork_cmd(ctx);
-		}
-		else
-		{
-			ctx->status = 127;
-			_putserror(ctx, "not found\n");
-		}
+		ctx->status = 127;
+		_putserror(ctx, "not found\n");
 	}
 }
 

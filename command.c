@@ -40,16 +40,12 @@ char *find_path(context_t *ctx)
 
 	pathstr = envget(ctx, "PATH=");
 
+	if ((ctx->isatty || pathstr) && iscmd(cmd))
+		return _strdup(cmd, 0, -1);
+
 	if (!pathstr)
 		return (NULL);
-	if ((_strlen(cmd) > 2) &&
-		(_starts_with(cmd, "./") ||
-		_starts_with(cmd, "../"))
-	)
-	{
-		if (iscmd(cmd))
-			return _strdup(cmd, 0, -1);
-	}
+	
 	while (1)
 	{
 		if (!pathstr[i] || pathstr[i] == ':')
