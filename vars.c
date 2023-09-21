@@ -1,11 +1,17 @@
 #include "shell.h"
 
+/**
+ * replace_vars - Replaces environment variable references with their values in command arguments.
+ * @ctx: The shell context containing the command with arguments to process.
+ *
+ * Return: 0 on success, or appropriate error code on failure.
+ */
 int replace_vars(context_t *ctx)
 {
 	int i = 0;
 	list_t *node;
-    char **argv = ctx->cmd->argv;
-    int argc = ctx->cmd->argc;
+	char **argv = ctx->cmd->argv;
+	int argc = ctx->cmd->argc;
 
 	for (i = 1; i < argc; i++)
 	{
