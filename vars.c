@@ -28,10 +28,10 @@ int replace_vars(context_t *ctx)
 		if (node)
 		{
 			replace_string(&(argv[i]),
-					_strdup(_strchr(node->data, '=') + 1), 0 , -1);
+					_strdup(_strchr(node->data, '=') + 1, 0 , -1));
 			continue;
 		}
-		replace_string(&argv[i], _strdup(""), 0, -1);
+		replace_string(&argv[i], _strdup("", 0, -1));
 
 	}
 	return (0);

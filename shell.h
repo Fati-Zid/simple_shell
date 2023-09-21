@@ -150,5 +150,6 @@ char *_itoa(long int num, int base, int flags);
 
 /* vars.c */
 int replace_vars(context_t *ctx);
+int replace_string(char **old, char *new);
 
 #endif
