@@ -47,8 +47,11 @@ typedef struct command
  * @cmd: Pointer to a command structure.
  * @env: Pointer to the environment linked list.
  * @status: Shell exit status.
- * @pname: ...
- */
+ * @pname: Process name
+ * @error_count: Number of occured erros
+ * @environ: String of environement variables
+ * @env_changed: 1 if environement is changed, 0 otherwise
+*/
 typedef struct context
 {
 	char *pname;
