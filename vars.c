@@ -1,8 +1,10 @@
 #include "shell.h"
 
 /**
- * replace_vars - Replaces environment variable references with their values in command arguments.
- * @ctx: The shell context containing the command with arguments to process.
+ * replace_vars - Replaces environment variable
+ * references with their values in command arguments.
+ * @ctx: The shell context containing the
+ * command with arguments to process.
  *
  * Return: 0 on success, or appropriate error code on failure.
  */
