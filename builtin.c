@@ -36,6 +36,5 @@ int envfn(context_t *ctx)
 		_putsln(h->data ? h->data : "(nil)");
 		h = h->next;
 	}
-
 	return (0);
 }
