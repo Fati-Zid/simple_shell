@@ -47,7 +47,7 @@ char *find_path(context_t *ctx)
 	pathstr = envget(ctx, "PATH=");
 
 	if ((ctx->isatty || pathstr || cmd[0] == '/') && iscmd(cmd))
-		return _strdup(cmd, 0, -1);
+		return (strdup(cmd, 0, -1));
 
 	if (!pathstr)
 		return (NULL);
@@ -57,9 +57,8 @@ char *find_path(context_t *ctx)
 		if (!pathstr[i] || pathstr[i] == ':')
 		{
 			path = _strdup(pathstr, curr_pos, i - 1);
-			if (!*path) {
+			if (!*path)
 				path = _strcat(&path, cmd);
-			}
 			else
 			{
 				path = _strcat(&path, "/");
@@ -67,7 +66,8 @@ char *find_path(context_t *ctx)
 			}
 			if (iscmd(path))
 				return (path);
-			if (!pathstr[i]) {
+			if (!pathstr[i])
+			{
 				free(path);
 				break;
 			}

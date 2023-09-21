@@ -44,9 +44,16 @@ int envfn(context_t *ctx)
 	return (0);
 }
 
+/**
+ * envsetfn - function...
+ * @ctx:The shell context
+ * Return: ...
+ */
+
 int envsetfn(context_t *ctx)
 {
 	command_t *cmd = ctx->cmd;
+
 	if (cmd->argc != 3)
 	{
 		_eputs("Incorrect number of arguements\n");
@@ -57,6 +64,11 @@ int envsetfn(context_t *ctx)
 	return (0);
 }
 
+/**
+ * envunsetfn - function that ...
+ * @ctx:The shell context
+ * Return: ...
+ */
 int envunsetfn(context_t *ctx)
 {
 	int i;
