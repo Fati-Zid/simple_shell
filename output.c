@@ -9,6 +9,11 @@ void _puts(const char *str)
 	write(1, str, _strlen(str));
 }
 
+/**
+ * _eputs - ....
+ * @str: ...
+ * Return: ...
+ */
 void _eputs(const char *str)
 {
 	write(2, str, _strlen(str));

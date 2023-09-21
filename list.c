@@ -76,6 +76,11 @@ unsigned int list_remove_at(list_t **head, unsigned int index)
 	return (0);
 }
 
+/**
+ * list_to_strings - ....
+ * @head: ...
+ * Return: ...
+ */
 char **list_to_strings(list_t *head)
 {
 	list_t *node = head;
@@ -106,6 +111,11 @@ char **list_to_strings(list_t *head)
 	return (strs);
 }
 
+/**
+ * list_len- ....
+ * @h: ...
+ * Return: ...
+ */
 size_t list_len(const list_t *h)
 {
 	size_t i = 0;
