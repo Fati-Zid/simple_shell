@@ -13,6 +13,10 @@
 /* Externs */
 extern char **environ;
 
+/* for convert_number() */
+#define CONVERT_LOWERCASE	1
+#define CONVERT_UNSIGNED	2
+
 /**
  * struct list - Linked list node structure.
  * @data: Data stored in the node.
