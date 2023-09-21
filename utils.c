@@ -1,5 +1,11 @@
 #include "shell.h"
 
+/**
+ * _erratoi - function ...
+ * @s: ....
+ * Return: integer
+ */
+
 int _erratoi(char *s)
 {
 	int i = 0;
