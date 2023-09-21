@@ -2,6 +2,7 @@
 
 /**
  * context_init - Initializes a new shell context.
+ * @pname: ...
  * Return: A pointer to the created context, or NULL on failure.
  */
 context_t *context_init(char *pname)
