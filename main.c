@@ -11,9 +11,9 @@
 int main(int argc, char **argv)
 {
 	int exit_status;
-	(void) argc;
-
 	context_t *ctx = context_init(argv[0]);
+
+	(void) argc;
 
 	if (ctx == NULL)
 	{
