@@ -127,6 +127,7 @@ int exitfn(context_t *ctx);
 int envfn(context_t *ctx);
 int envsetfn(context_t *ctx);
 int envunsetfn(context_t *ctx);
+int cdfn(context_t *ctx);
 
 /* output.c */
 void _puts(const char *str);

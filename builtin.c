@@ -83,3 +83,61 @@ int envunsetfn(context_t *ctx)
 
 	return (0);
 }
+
+/**
+ * cdfn - changes the current directory of the process
+ * @ctx: Structure containing potential arguments. Used to maintain
+ * constant function prototype.
+ * Return: Always 0
+ */
+int cdfn(context_t *ctx)
+{
+	char *s, *dir, buffer[1024];
+	int chdir_ret;
+	char **argv = ctx->cmd->argv;
+
+	s = getcwd(buffer, 1024);
+	if (!s)
+		_eputs("getcwd failed\n");
+	if (!argv[1])
+	{
+		dir = envget(ctx, "HOME=");
+		if (!dir)
+		{
+			dir = envget(ctx, "PWD=");
+			chdir_ret = chdir(dir ? dir : "/");
+		}
+		else
+			chdir_ret = chdir(dir);
+	}
+	else if (_strcmp(argv[1], "-") == 0)
+	{
+		dir = envget(ctx, "OLDPWD=");
+		if (!dir)
+		{
+			_puts(s);
+			_puts('\n');
+			return (1);
+		}
+		_puts(dir);
+		_puts('\n');
+		chdir_ret = chdir(dir);
+	}
+	else
+		chdir_ret = chdir(argv[1]);
+	if (chdir_ret == -1)
+	{
+		_eputs(ctx->pname);
+		_eputs(": ");
+		_eputs(ctx->cmd->name);
+		_eputs(": ");
+		_eputs(ctx->argv[1]);
+		_eputs(": No such file or directory");
+	}
+	else
+	{
+		envset(ctx, "OLDPWD", envget(ctx, "PWD="));
+		envset(ctx, "PWD", getcwd(buffer, 1024));
+	}
+	return (0);
+}
