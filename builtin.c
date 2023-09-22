@@ -14,7 +14,7 @@ int exitfn(context_t *ctx)
 		exitcode = _atoi(ctx->cmd->argv[1]);
 		if (exitcode == -1)
 		{
-			_putserror(ctx, "Illegal number: ", 0);
+			_putserror(ctx, "Illegal number: ");
 			_eputs(ctx->cmd->argv[1]);
 			_eputs("\n");
 			ctx->status = 2;
@@ -120,7 +120,11 @@ int cdfn(context_t *ctx)
 	else
 		chdir_ret = chdir(argv[1]);
 	if (chdir_ret == -1)
-		_putserror(ctx, "No such file or directory\n", 1);
+	{
+		_putserror(ctx, "can't cd to ");
+		_eputs(argv[1]);
+		_eputs("\n");
+	}
 	else
 	{
 		envset(ctx, "OLDPWD", envget(ctx, "PWD="));

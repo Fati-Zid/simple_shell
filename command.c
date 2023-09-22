@@ -28,8 +28,8 @@ unsigned int command_parse(context_t *ctx)
 
 	}
 
-	cmd->name = _strdup(cmd->argv[0], 0, -1);
 	replace_vars(ctx);
+	cmd->name = _strdup(cmd->argv[0], 0, -1);
 	return (1);
 }
 

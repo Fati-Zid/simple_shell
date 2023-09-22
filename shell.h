@@ -133,7 +133,7 @@ int cdfn(context_t *ctx);
 void _puts(const char *str);
 void _putsln(const char *str);
 void _eputs(const char *str);
-void _putserror(context_t *ctx, const char *error, int no_count);
+void _putserror(context_t *ctx, const char *error);
 
 /* input.c */
 ssize_t read_input(context_t *ctx);
