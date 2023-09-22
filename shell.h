@@ -131,9 +131,9 @@ int cdfn(context_t *ctx);
 
 /* output.c */
 void _puts(const char *str);
+void _putsln(const char *str);
 void _eputs(const char *str);
-void _eputsa(int v);
-void _putserror(context_t *ctx, const char *error);
+void _putserror(context_t *ctx, const char *error, int no_count);
 
 /* input.c */
 ssize_t read_input(context_t *ctx);

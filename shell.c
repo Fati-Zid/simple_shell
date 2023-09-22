@@ -74,7 +74,7 @@ void exec_cmd(context_t *ctx)
 	else
 	{
 		ctx->status = 127;
-		_putserror(ctx, "not found\n");
+		_putserror(ctx, "not found\n", 0);
 	}
 }
 
@@ -113,7 +113,7 @@ void fork_cmd(context_t *ctx)
 		{
 			ctx->status = WEXITSTATUS(ctx->status);
 			if (ctx->status == 126)
-				_putserror(ctx, "Permission denied\n");
+				_putserror(ctx, "Permission denied\n", 0);
 		}
 	}
 }

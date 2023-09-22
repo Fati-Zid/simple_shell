@@ -10,6 +10,16 @@ void _puts(const char *str)
 }
 
 /**
+ * _putsln - Writes a string and break line to the standard output.
+ * @str: Pointer to the string to be written.
+ */
+void _putsln(const char *str)
+{
+	_puts(str);
+	_pust("\n");
+}
+
+/**
  * _eputs - ....
  * @str: ...
  * Return: ...
@@ -20,41 +30,27 @@ void _eputs(const char *str)
 }
 
 /**
- * _eputsa - ....
- * @v: ...
- * Return: ...
- */
-
-void _eputsa(int v)
-{
-	char str[100];
-	int r, i = 0;
-
-	while (v != 0)
-	{
-		r = v % 10;
-		v = v / 10;
-		str[i] = (char)('0' + r);
-		i++;
-	}
-	str[i] = '\0';
-	_eputs(str);
-}
-
-/**
  * _putserror - ....
  * @error: ...
  * @ctx: the shell context
  * Return: ...
  */
-void _putserror(context_t *ctx, const char *error)
+void _putserror(context_t *ctx, const char *error, int no_count)
 {
 	ctx->error_count++;
 	_eputs(ctx->pname);
 	_eputs(": ");
-	_eputsa(ctx->error_count);
-	_eputs(": ");
+	if(!no_count)
+	{
+		_eputs(_itoa(ctx->error_count, 10, 0));
+		_eputs(": ");
+	}
 	_eputs(ctx->cmd->name);
 	_eputs(": ");
+	if(no_count)
+	{
+		_eputs(ctx->cmd->argv[1]);
+		_eputs(": ");
+	}
 	_eputs(error);
 }

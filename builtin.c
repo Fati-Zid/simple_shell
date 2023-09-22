@@ -14,7 +14,7 @@ int exitfn(context_t *ctx)
 		exitcode = _atoi(ctx->cmd->argv[1]);
 		if (exitcode == -1)
 		{
-			_putserror(ctx, "Illegal number: ");
+			_putserror(ctx, "Illegal number: ", 0);
 			_eputs(ctx->cmd->argv[1]);
 			_eputs("\n");
 			ctx->status = 2;
@@ -103,37 +103,24 @@ int cdfn(context_t *ctx)
 	{
 		dir = envget(ctx, "HOME=");
 		if (!dir)
-		{
 			dir = envget(ctx, "PWD=");
-			chdir_ret = chdir(dir ? dir : "/");
-		}
-		else
-			chdir_ret = chdir(dir);
+		chdir_ret = chdir(dir ? dir : "/");
 	}
 	else if (_strcmp(argv[1], "-") == 0)
 	{
 		dir = envget(ctx, "OLDPWD=");
 		if (!dir)
 		{
-			_puts(s);
-			_puts("\n");
+			_putsln(s);
 			return (1);
 		}
-		_puts(dir);
-		_puts("\n");
+		_putsln(dir);
 		chdir_ret = chdir(dir);
 	}
 	else
 		chdir_ret = chdir(argv[1]);
 	if (chdir_ret == -1)
-	{
-		_eputs(ctx->pname);
-		_eputs(": ");
-		_eputs(ctx->cmd->name);
-		_eputs(": ");
-		_eputs(argv[1]);
-		_eputs(": No such file or directory\n");
-	}
+		_putserror(ctx, "No such file or directory\n", 1);
 	else
 	{
 		envset(ctx, "OLDPWD", envget(ctx, "PWD="));
