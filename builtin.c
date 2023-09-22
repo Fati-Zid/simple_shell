@@ -121,7 +121,7 @@ int cdfn(context_t *ctx)
 		chdir_ret = chdir(argv[1]);
 	if (chdir_ret == -1)
 	{
-		_putserror(ctx, "can't cd to");
+		_putserror(ctx, "can't cd to ");
 		_eputs(argv[1]);
 		_eputs("\n");
 	}
