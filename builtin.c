@@ -14,7 +14,7 @@ int exitfn(context_t *ctx)
 		exitcode = _atoi(ctx->cmd->argv[1]);
 		if (exitcode == -1)
 		{
-			_putserror(ctx, "Illegal number: ");
+			_putserror(ctx, "Illegal number: ", 0);
 			_eputs(ctx->cmd->argv[1]);
 			_eputs("\n");
 			ctx->status = 2;
@@ -81,5 +81,50 @@ int envunsetfn(context_t *ctx)
 	for (i = 1; i <= ctx->cmd->argc; i++)
 		envunset(ctx, ctx->cmd->argv[i]);
 
+	return (0);
+}
+
+/**
+ * cdfn - changes the current directory of the process
+ * @ctx: Structure containing potential arguments. Used to maintain
+ * constant function prototype.
+ * Return: Always 0
+ */
+int cdfn(context_t *ctx)
+{
+	char *s, *dir, buffer[1024];
+	int chdir_ret;
+	char **argv = ctx->cmd->argv;
+
+	s = getcwd(buffer, 1024);
+	if (!s)
+		_eputs("getcwd failed\n");
+	if (!argv[1])
+	{
+		dir = envget(ctx, "HOME=");
+		if (!dir)
+			dir = envget(ctx, "PWD=");
+		chdir_ret = chdir(dir ? dir : "/");
+	}
+	else if (_strcmp(argv[1], "-") == 0)
+	{
+		dir = envget(ctx, "OLDPWD=");
+		if (!dir)
+		{
+			_putsln(s);
+			return (1);
+		}
+		_putsln(dir);
+		chdir_ret = chdir(dir);
+	}
+	else
+		chdir_ret = chdir(argv[1]);
+	if (chdir_ret == -1)
+		_putserror(ctx, "No such file or directory\n", 1);
+	else
+	{
+		envset(ctx, "OLDPWD", envget(ctx, "PWD="));
+		envset(ctx, "PWD", getcwd(buffer, 1024));
+	}
 	return (0);
 }
