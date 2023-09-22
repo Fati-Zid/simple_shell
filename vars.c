@@ -15,7 +15,7 @@ int replace_vars(context_t *ctx)
 	char **argv = ctx->cmd->argv;
 	int argc = ctx->cmd->argc;
 
-	for (i = 1; i < argc; i++)
+	for (i = 0; i < argc; i++)
 	{
 		if (argv[i][0] != '$' || !argv[i][1])
 			continue;
