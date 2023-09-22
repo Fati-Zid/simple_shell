@@ -132,7 +132,7 @@ int cdfn(context_t *ctx)
 		_eputs(ctx->cmd->name);
 		_eputs(": ");
 		_eputs(argv[1]);
-		_eputs(": No such file or directory");
+		_eputs(": No such file or directory\n");
 	}
 	else
 	{
