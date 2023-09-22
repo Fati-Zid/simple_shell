@@ -39,8 +39,12 @@ int replace_vars(context_t *ctx)
 					_strdup(_strchr(node->data, '=') + 1, 0, -1));
 			continue;
 		}
+		else if (argv[i+1])
+		{
+			replace_string(&argv[i], _strdup(argv[i+1], 0, -1));
+			break;
+		}
 		replace_string(&argv[i], _strdup("", 0, -1));
-
 	}
 	return (0);
 }
