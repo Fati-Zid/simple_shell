@@ -40,14 +40,14 @@ void _putserror(context_t *ctx, const char *error, int no_count)
 	ctx->error_count++;
 	_eputs(ctx->pname);
 	_eputs(": ");
-	if(!no_count)
+	if (!no_count)
 	{
 		_eputs(_itoa(ctx->error_count, 10, 0));
 		_eputs(": ");
 	}
 	_eputs(ctx->cmd->name);
 	_eputs(": ");
-	if(no_count)
+	if (no_count)
 	{
 		_eputs(ctx->cmd->argv[1]);
 		_eputs(": ");
