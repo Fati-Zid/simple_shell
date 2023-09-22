@@ -16,7 +16,7 @@ void _puts(const char *str)
 void _putsln(const char *str)
 {
 	_puts(str);
-	_pust("\n");
+	_puts("\n");
 }
 
 /**
