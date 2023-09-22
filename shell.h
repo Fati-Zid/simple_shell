@@ -13,6 +13,10 @@
 /* Externs */
 extern char **environ;
 
+/* for convert_number() */
+#define CONVERT_LOWERCASE	1
+#define CONVERT_UNSIGNED	2
+
 /**
  * struct list - Linked list node structure.
  * @data: Data stored in the node.
@@ -103,6 +107,9 @@ char **list_to_strings(list_t *head);
 size_t list_len(const list_t *h);
 void list_free(list_t **head_ptr);
 
+/* list_ext.c */
+list_t *node_starts_with(list_t *node, char *prefix, char c);
+
 /* string.c */
 size_t _strlen(const char *str);
 char *_strdup(const char *str, int start, int stop);
@@ -113,6 +120,7 @@ char *_strcat(char **str1, char *str2);
 /* string_ext.c */
 char *_starts_with(const char *haystack, const char *needle);
 int is_white_space(char *str);
+char *_strchr(char *s, char c);
 
 /* builtin.c */
 int exitfn(context_t *ctx);
@@ -141,6 +149,11 @@ char **strtow(char *str, int *len, char *d);
 int is_delim(char c, char *delim);
 
 /* utils.c */
-int _erratoi(char *s);
+int _atoi(char *s);
+char *_itoa(long int num, int base, int flags);
+
+/* vars.c */
+int replace_vars(context_t *ctx);
+int replace_string(char **old, char *new);
 
 #endif

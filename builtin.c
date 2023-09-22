@@ -11,7 +11,7 @@ int exitfn(context_t *ctx)
 
 	if (ctx->cmd->argv[1])
 	{
-		exitcode = _erratoi(ctx->cmd->argv[1]);
+		exitcode = _atoi(ctx->cmd->argv[1]);
 		if (exitcode == -1)
 		{
 			_putserror(ctx, "Illegal number: ");
