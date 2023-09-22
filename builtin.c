@@ -116,11 +116,11 @@ int cdfn(context_t *ctx)
 		if (!dir)
 		{
 			_puts(s);
-			_puts('\n');
+			_puts("\n");
 			return (1);
 		}
 		_puts(dir);
-		_puts('\n');
+		_puts("\n");
 		chdir_ret = chdir(dir);
 	}
 	else
